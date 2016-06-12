@@ -1,0 +1,24 @@
+{
+  "name": "ios-message-logger",
+  "version": "1.0.0",
+  "description": "A utility to extract messages from an iOS backup and log them to a text file.",
+  "author": "Jason Puglisi <jason@puglisi.im>",
+  "scripts": {
+    "start": "node parse.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JasonPuglisi/ios-message-logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JasonPuglisi/ios-message-logger/issues"
+  },
+  "dependencies": {
+    "moment": "^2.13.0",
+    "phone": "^1.0.7",
+    "sqlite3": "^3.1.4",
+    "vcardparser": "^1.0.3"
+  },
+  "private": true,
+  "license": "MIT"
+}
