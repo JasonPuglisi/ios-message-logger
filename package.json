@@ -14,9 +14,9 @@
     "url": "https://github.com/JasonPuglisi/ios-message-logger/issues"
   },
   "dependencies": {
-    "moment": "^2.13.0",
-    "phone": "^1.0.7",
-    "sqlite3": "^3.1.4",
+    "moment": "^2.18.1",
+    "phone": "^1.0.9",
+    "sqlite3": "^3.1.8",
     "vcardparser": "^1.0.3"
   },
   "private": true,
