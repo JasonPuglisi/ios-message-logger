@@ -1,37 +1,46 @@
 # iOS Message Logger
 
-This utility takes a message database from a local iOS backup and a contacts
-database from a Contacts.app export. It dumps all conversations to separate
-text files, and replaces phone numbers with names from contacts when possible.
+iOS message backup parser and text log formatter.
 
-# Usage
+## Usage
 
-`node parse.js <own_phone_number>`
+Run `node parse.js <own_phone_number>` after completing the prerequisites and
+installing the dependencies as instructed below. Insert your own phone number
+for `<own_phone_number>` using the format specified below.
 
-<own_phone_number> must be in the format `+###########` which expands to
+`<own_phone_number>` must be in the format `+###########` which expands to
 `+# (###) ###-####`, meaning it must have a country code and area code. Do not
-include any parenthesis or spaces, but do include the plus symbol at the
-beginning.
+include any parenthesis, spaces, or dashes, but do include the plus symbol at
+the beginning.
 
-For the utility to work, you must have two files in the `db` folder:
-`messages.db` and `contacts.vcf`. `messages.db` will come from
-`~/Library/ApplicationSupport/MobileSync/Backup/RECENT_BACKUP_FOLDER/3d0d7e5fb2ce288813306e4d4636395e047a3d28`
-and `contacts.vcf` will come from a vCard contacts export from Contacts.app.
+### Prerequisites
 
-To get the messages database, make sure you have a recent local backup of your
-device from iTunes. For RECENT_BACKUP_FODLER, it's probably best to use the
-newest folder available.
+You must insert two files into the [`db`](db) folder: `messages.db` and
+`contacts.vcf`.
 
-To get the contacts database, select all of your contacts in Contacts.app,
-and use the menu at the top to export a vCard file.
+The first file is obtained from a local iOS backup. Browse to
+`~/Library/ApplicationSupport/MobileSync/Backup/` and find the most recent
+folder. Inside that folder, find the file
+`3d0d7e5fb2ce288813306e4d4636395e047a3d28` and copy it to the [`db`](db)
+folder, renaming it as `messages.db`.
 
-# Notes
+The second file is obtained by exporting your contacts from the macOS Contacts
+app. Select all of your contacts by pressing CTRL+A, and navigate to File ->
+Export -> Export vCard... in the top menu bar. Save this file to the [`db`](db)
+folder as `contacts.vcf`.
 
-This code wasn't really written to be published, but I wanted to put it out
-there in case anyone wants to base something off of it. For this reason though,
-it's not very pretty. Right now, there's no error checking to make sure the
-message and contact databases exist, or that a phone number was supplied on the
-command line. These are easy fixes, but I don't feel like adding to the code
-since I haven't touched it in a while. Just make sure everything is where it's
-supposed to be and this should work pretty well!
+### Dependencies
 
+Run `npm install` in the root directory to install the appropriate
+dependencies.
+
+## Overview
+
+Takes a message database from a local iOS backup and a contacts database from
+the macOS Contacts app to create text logs for each individual and group
+conversation. Phone numbers are replaced with contact names when possible,
+including your own.
+
+Note that this was a quick project that has not been tested much. It contains
+little to no error checking, so the prerequisites must be completed exactly
+according to instructions.
