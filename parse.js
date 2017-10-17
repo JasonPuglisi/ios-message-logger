@@ -90,15 +90,16 @@ function getMessages(chatId, messageIds, callback) {
 }
 
 function parseMessage(chatId, message, phoneNumbers, callback) {
-  var date = moment('2001-01-01T00:00:00').add(message.date, 's').format(
-    'YYYY-MM-DD HH:mm:ss');
+  var date = moment('2001-01-01T00:00:00Z').add(message.date / 1000000000,
+    's').utc().format('YYYY-MM-DD HH:mm:ss');
   var outbound = !!message.is_from_me;
   var text = message.text;
   db.get('select * from handle where ROWID=:handleId', {
     ':handleId': message.handle_id
   }, function(err, row) {
     callback(chatId, message, '[' + date + '] ' + (phoneNumbers[outbound ?
-      self : row.id] || row.id) + ': ' + text.replace(/\n/g, ' '));
+      self : row.id] || row.id) + ': ' + (text ? text.replace(/\n/g, ' ') :
+      '' ));
   });
 }
 
